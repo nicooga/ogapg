@@ -39,3 +39,5 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'carrierwave'
+gem 'execjs'
+gem 'therubyracer'

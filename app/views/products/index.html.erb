@@ -1,0 +1,15 @@
+<h1>Lista de Productos</h1>
+<p>impresiones, bosta en bolsita, random stuff, blah blah</p>
+
+<% @products.each do |product| %>
+  <p><%= product.name %><p>
+  <p><%= product.description %><p>
+  <p><%= product.category %><p>
+  <p><%= product.image %><p>
+  <%= link_to 'Mostrar', url_for(product) %>
+  <%= link_to 'Editar', url_for(:edit, product) %>
+  <%= link_to 'Eliminar', url_for(:destroy, product), :data_method => "delete", :rel => "nofollow" %>
+<% end %>
+
+<%= link_to 'Volver', root_path %>
+<%= link_to 'Nuevo', new_product_path %>
