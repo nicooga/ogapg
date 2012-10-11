@@ -1,0 +1,14 @@
+<h4>Nombre</h4>
+<%= @product.name %>
+
+<h4>Descripción</h4>
+<%= @product.description %>
+
+<h4>Categoría</h4>
+<%= @product.category %>
+
+<h4>Image</h4>
+<%= @product.image %>
+
+<%= link_to 'Volver', products_path %>
+<%= link_to 'Editar', edit_product_path(@product) %>

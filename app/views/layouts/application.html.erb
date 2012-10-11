@@ -6,9 +6,41 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="#">OGA producciones gráficas</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav nav-pills">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">Promociones</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+        
+        <div class="nav nav-colapse pull-right">
+          
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class='container-fluid'>
+    <div class="row-fluid">
+      <div class='span2'><%= render 'snippets/sidebar' %></div>
+      <div class='span10'>
+        <%= render 'snippets/alerts'%>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <a>Admin</a>
+  </footer>
+  
 </body>
 </html>

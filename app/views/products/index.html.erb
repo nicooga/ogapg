@@ -1,15 +1,32 @@
 <h1>Lista de Productos</h1>
 <p>impresiones, bosta en bolsita, random stuff, blah blah</p>
 
+<table class='table table-bordered'>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Category</th>
+      <th>Imagen</th>
+      <th>x</th>
+      </tr>
+  </thead>
+  <tbody>
 <% @products.each do |product| %>
-  <p><%= product.name %><p>
-  <p><%= product.description %><p>
-  <p><%= product.category %><p>
-  <p><%= product.image %><p>
-  <%= link_to 'Mostrar', url_for(product) %>
-  <%= link_to 'Editar', url_for(:edit, product) %>
-  <%= link_to 'Eliminar', url_for(:destroy, product), :data_method => "delete", :rel => "nofollow" %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.description %></td>
+      <td><%= product.category %></td>
+      <td><%= product.image %></td>
+      <td><%= link_to 'Mostrar', url_for(product) %> |
+          <%= link_to 'Editar', edit_product_path(product) %> |
+          <%= link_to 'Eliminar', url_for(product), :data_method => "delete", :rel => "nofollow" %></td>
+    </tr>
+  </tbody>
 <% end %>
+</table>
 
-<%= link_to 'Volver', root_path %>
+<br />
+
+<%= link_to 'Volver', root_path %> |
 <%= link_to 'Nuevo', new_product_path %>
