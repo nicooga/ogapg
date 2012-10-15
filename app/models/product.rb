@@ -1,13 +1,14 @@
 class Product < ActiveRecord::Base
-  has_many :properties
-  has_one :price
+  has_many :properties, :dependent => :destroy
+  has_many :prices, :dependent => :destroy
   
-  accepts_nested_attributes_for :properties
-  accepts_nested_attributes_for :price
+  accepts_nested_attributes_for :prices, :properties, :allow_destroy => :destroy
 
-  attr_accessible :name, :category, :description, :image
+  attr_accessible :name, :category, :description, :image, :prices_attributes, :properties_attributes
   
-#   mount_uploader :image, ImageUploader
+  mount_uploader :image, ImageUploader
+  
+  validates_presence_of :name, :category, :description, :image
   
   CATEGORIES= %w( Folletos Tarjetas\ Personales Imanes Stickers Gigantografias Banners )
 end

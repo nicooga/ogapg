@@ -8,7 +8,47 @@
 <%= @product.category %>
 
 <h4>Image</h4>
-<%= @product.image %>
+<% if @product.image.file %>
+  <%= image_tag @product.image %>
+<%else%>
+  <p class="error">No hay imagen<p>
+<%end%>
+
+<h4>Precios</h4>
+<table class="table">
+  <thead>
+    <th>Cantidad</th>
+    <th>Monto ($)</th>
+    <th></th>
+  </thead>
+
+  <tbody>
+<% @product.prices.each do |price| %>
+    <tr>
+      <td><%=price.quantity%></td>
+      <td><%=price.amount%></td>
+    </tr>
+<%end%>
+  </tbody>
+</table>
+
+<h4>Propiedades</h4>
+<table class="table">
+  <thead>
+    <th>Nombre</th>
+    <th>Valor</th>
+    <th></th>
+  </thead>
+
+  <tbody>
+<% @product.properties.each do |ppty| %>
+    <tr>
+      <td><%=ppty.name%></td>
+      <td><%=ppty.value%></td>
+    </tr>
+<%end%>
+  </tbody>
+</table>
 
 <%= link_to 'Volver', products_path %>
 <%= link_to 'Editar', edit_product_path(@product) %>
