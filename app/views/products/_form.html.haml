@@ -1,0 +1,83 @@
+%h2 Hola soy un form
+%p Para crear nuevos productos
+= form_for (@product), :html => {:multipart => true} do |f|
+  - if @product.errors.any?
+    #error_explanation.alert.alert-error
+      %p
+        = pluralize(@product.errors.count, "error")
+        prohibited this product from being saved:
+      %ul
+        - @product.errors.full_messages.each do |msg|
+          %li= msg
+  .row-fluid.underlined
+    .span3
+      = content_tag :legend, 'Datos Básicos'
+      = f.label :name, 'Nombre'
+      = f.text_field :name
+      = f.label :category, 'Categoría'
+      = f.select :category, Product::CATEGORIES
+      = f.label :description, 'Descripción'
+      = f.text_area :description, :rows => 10, :style => 'width:100%;'
+    .span3
+      = content_tag :legend, 'Precio'
+      %p
+        %a.btn.btn-block{"data-toggle" => "modal", :href => "#price_fields"} Agregar precio
+      %p
+        Precios por cantidad. Para precio base, cree una entrada <em><strong>(cantidad: 1, monto: X)</strong></em>
+      %table#prices_table.table.span8.hide
+        %thead
+          %th Cantidad
+          %th Monto ($)
+          %th
+        %tbody
+      %br/
+      #price_fields.span2.modal.hide.fade
+        .modal-header
+          %button#cancel.close{"data-dismiss" => "modal", :type => "button"} ×
+          %h3 Agregar precio
+        .modal-body
+          = label_tag  :quantity, 'Cantidad'
+          = input_prepend '/c', (text_field_tag :quantity, nil, :name => nil, :class => 'span8')
+          = label_tag :amount, 'Monto'
+          = input_prepend '$', (text_field_tag :amount, nil, :name => nil, :class => 'span8')
+        .modal-footer
+          %a#cancel.btn{"data-toggle" => "modal", :href => "#price_fields"} Cancelar
+          %a#add_price.btn.btn-primary{:href => "#"} Agregar
+    .span3
+      = content_tag :legend, 'Propiedades'
+      %p
+        %a.btn.btn-block{"data-toggle" => "modal", :href => "#property_fields"} Agregar propiedad
+      %p Detalles acerca del producto, en formato 'nombre => valor'.
+      %table#properties_table.table.hide
+        %thead
+          %th Nombre
+          %th Valor
+          %th
+        %tbody
+      %br/
+      #property_fields.span2.modal.hide.fade
+        .modal-header
+          %button#cancel.close{"data-dismiss" => "modal", :type => "button"} ×
+          %h3 Agregar propiedad
+        .modal-body
+          = label_tag  :name, 'Nombre '
+          = text_field_tag :name, nil, :name => nil, :class => 'span8'
+          = label_tag :value, 'Valor'
+          = text_field_tag :value, nil, :name => nil, :class => 'span8'
+        .modal-footer
+          %a#cancel.btn{"data-toggle" => "modal", :href => "#property_fields"} Cancelar
+          %a#add_property.btn.btn-primary{:href => "#"} Agregar
+    .span3
+      = content_tag :legend, 'Imagen'
+      = f.hidden_field :image_cache
+      - if @product.image.file
+        = label_tag 'Imagen actual'
+        = file_uploader 'product[image]', @product.image_url
+      - else
+        = file_uploader 'product[image]'
+  %br/
+  = f.submit 'Crear', :class => 'btn btn-primary'
+  = link_to 'Cancelar', :back, :class => 'btn btn-warning'
+
+.hide#product_prices= @product.prices.each.to_json unless @product.prices.empty?
+.hide#product_properties= @product.properties.each.to_json unless @product.properties.empty?

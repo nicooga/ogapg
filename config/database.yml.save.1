@@ -1,0 +1,16 @@
+common: &common
+  adapter: postgresql
+  username: cygnus
+
+development:
+  <<: *common
+  database: ogapg_development
+
+test:
+gem 'execjs'
+
+gem 'therubyracer'
+  adapter: postgresql
+
+production:
+  adapter: postgresql

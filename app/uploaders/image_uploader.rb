@@ -1,8 +1,11 @@
 class ImageUploader < CarrierWave::Uploader::Base
+#   include CarrierWave::MiniMagick
+  
   storage :file
+#   process :resize_to_fit => [300, 200]
 
   def store_dir
-    "app/assets/images/products"
+    "images/products"
   end
   
   def extension_white_list

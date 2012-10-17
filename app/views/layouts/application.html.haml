@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title //OGApg//
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    - if Ogapg::Application.assets.find_asset("#{controller_name}/#{action_name}.js.coffee")
+      = javascript_include_tag "#{controller_name}/#{action_name}"
+    = csrf_meta_tags
+  %body
+    = render 'snippets/navbar'
+    .container-fluid
+      .row-fluid
+        .span2= render 'snippets/sidebar'
+        .span10
+          = render 'snippets/alerts'
+          = yield
+    %footer
+      %a Admin

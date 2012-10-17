@@ -7,7 +7,6 @@ gem 'rails', '3.2.8'
 
 gem 'pg'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -37,8 +36,10 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+gem 'execjs'
 gem 'devise'
 gem 'carrierwave'
-gem 'execjs'
+gem 'mini_magick'
 gem 'therubyracer'
-gem 'color_routes'
+gem 'haml-rails', '>= 0.3.4'
+gem "rdiscount", ">= 1.6.8"

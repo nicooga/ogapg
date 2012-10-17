@@ -1,0 +1,18 @@
+%h1 Bienvenido a OGApg
+%p Producciones gráficas
+
+.row-fluid
+  .span2
+  .span8
+    #myCarousel.carousel.slide
+      / Carousel items
+      .carousel-inner
+        .active.item= image_tag 'http://placehold.it/1600x1200'
+        .item= image_tag 'http://placehold.it/1600x1200'
+        .item= image_tag 'http://placehold.it/1600x1200'
+        .item= image_tag 'http://placehold.it/1600x1200'
+      / Carousel nav
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+
+%p= link_to 'Productos', products_path

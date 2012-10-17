@@ -1,0 +1,42 @@
+.page-header.spaced
+  %h1= @product.name
+
+.row-fluid.spaced
+  .span2
+    %h6= @product.category
+    = image_tag @product.image, class: 'img-polaroid'
+
+  - unless @product.properties.reject{|ppty| ppty.name == 'front'}.empty? 
+    .span5
+      %table.table.table-striped.center
+        %thead
+          %th Nombre
+          %th Valor
+        %tbody
+        - @product.properties.reject{|ppty| ppty.name == 'front'}.each do |ppty|
+          %tr
+            %td= ppty.name
+            %td= ppty.value
+
+  - unless @product.prices.empty?
+    .span5
+      %h4.underlined Precios
+      %table.table.table-striped.table-bordered
+        %thead
+          %th Cantidad
+          %th Monto ($)
+        %tbody
+          - @product.prices.each do |price|
+            %tr
+              %td= price.quantity
+              %td= price.amount
+
+.row-fluid.underlined.spaced
+  .span12
+    %h4.underlined Acerca de este producto
+    = @product.description
+
+.row-fluid.spaced
+  .span12
+    = link_to 'Volver', :back, class: 'btn'
+    = link_to 'Editar', edit_product_path(@product), class: 'btn'

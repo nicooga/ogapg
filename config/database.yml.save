@@ -1,0 +1,15 @@
+common: &common
+  adapter: postgresql
+  username: cygnus
+
+development:
+  <<: *common
+  database: ogapg_development
+
+test:
+  <<: *common
+  database: ogapg_test
+
+production:
+  <<: *common
+  database: ogapg_production

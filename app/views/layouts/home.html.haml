@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %title //OGApg//
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    - if Ogapg::Application.assets.find_asset("#{controller_name}/#{action_name}.js")
+      = javascript_include_tag "#{controller_name}/#{action_name}"
+    = csrf_meta_tags
+  %body
+    .navbar
+      .navbar-inner
+        .container-fluid
+          %a.brand{:href => "#"} OGA producciones gráficas
+          .nav-collapse.collapse
+            %ul.nav.nav-pills
+              %li.active= link_to 'Home', root_path
+              %li= link_to 'Products', products_path
+              %li= link_to 'Contacto', nil, :class => 'disabled'
+          / /.nav-collapse
+          .nav.nav-colapse.pull-right
+    .container-fluid
+      .row-fluid
+        .span2
+        .span8
+          = render 'snippets/alerts'
+          = yield
+        .span2
+    %footer
+      %a Admin

@@ -1,0 +1,25 @@
+.well.sidebar-nav
+  = content_tag :h1, (link_to 'Productos', products_path, :class => 'btn btn-block')
+  %ul.nav.nav-tabs.nav-stacked
+    %li.nav-header Offset
+    %li
+      %a Folletos
+    %li
+      %a Tarjetas Personales
+    %li
+      %a Imanes
+    %li.nav-header Digital
+    %li
+      %a Gigantografías
+    %li
+      %a Banners
+    %li
+      %a Tarjetas Personales
+  %h1= link_to 'Contacto', products_path, :class => 'btn btn-block'
+  %ul.nav.nav-tabs.nav-stacked
+    %li
+      %a Presupuestos a medida
+    %li
+      %a Servicio de corrección de originales
+    %li
+      %a Solicite muestras a domicilio
