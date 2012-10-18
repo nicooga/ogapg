@@ -1,7 +1,10 @@
 class HomeController < ApplicationController
-  layout 'home'
-  
+  layout 'application', only: :views
+
   def index
-    @products = Product.all
+  end
+
+  def views
+    render params[:view]
   end
 end

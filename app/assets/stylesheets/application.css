@@ -8,27 +8,37 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require bootstrap
  *= require bootstrap-responsive
+ *= require_self
  */
 
-footer {
-  margin-top: 30px ;
-  padding: 10px ;
+.fill-heigth {
+  height: 100%;
+}
+
+.block {
+  width: 250px;
+}
+
+.squeeze {
+  margin-right: 10% ; 
+  margin-left: 10% ;
 }
 
 .underlined {
-  border-bottom: 1px solid #E5E5E5 ;
+  border-bottom: 1px solid #E5E5E5;
+  padding-bottom: 5px;
 }
 
 .overlined {
-  border-top: 1px solid #E5E5E5 ;
+  border-top: 1px solid #E5E5E5;
+  padding-top: 5px;
 }
 
 .spaced {
-  padding-bottom: 10px ;
-  margin-bottom: 20px ;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .center {
@@ -41,4 +51,47 @@ footer {
   -moz-box-shadow: 0 0 5px 5px #888;
   -webkit-box-shadow: 0 0 5px 5px#888;
   box-shadow: 0 0 10px 10px #888;
+}
+
+.navbar-inner {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.navbar-inner .container {
+  margin-left: 15%; 
+  margin-right: 15%;
+}
+
+.navbar-inner .container ul.nav, li, a {
+  height: 100%;
+}
+
+.navbar-inner a {
+  padding-top: 50px;
+}
+
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  padding-bottom: 30px;
+}
+
+.footer {
+  position: relative;
+  margin: 0 auto;
+  height: 4em;
+  
+  margin-top: 30px;
+
+  padding-top: 30px;
+  padding-left: 15%;
+  padding-right: 15%;
+
+  border-top: 1px solid #E3E3E3;
+  background-color: whitesmoke; 
 }

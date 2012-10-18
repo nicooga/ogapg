@@ -8,27 +8,22 @@
       = javascript_include_tag "#{controller_name}/#{action_name}"
     = csrf_meta_tags
   %body
-    .navbar
-      .navbar-inner
-        .container-fluid
-          %a.brand{:href => "#"} OGA producciones gráficas
-          .nav-collapse.collapse
-            %ul.nav.nav-pills
-              %li.active= link_to 'Home', root_path
-              %li= link_to 'Products', products_path
-              %li= link_to 'Contacto', nil, :class => 'disabled'
-          / /.nav-collapse
-          .nav.nav-colapse.pull-right
-    .container-fluid
-      .row-fluid
-        .span2
-        .span8
-          = render 'snippets/alerts'
-          %h4= admin_signed_in?
-          = yield
-        .span2
-    .row-fluid
-      %footer
-        .well
-          .pull-right
-            = render 'snippets/session_links'
+    .wrapper
+      = render 'snippets/navbar'
+
+      .container-fluid.squeeze
+        .row-fluid
+          .span3
+            %ul.nav.nav-tabs.nav-stacked
+              %li= link_to 'Productos', products_path
+              %li= link_to 'Política de envíos'
+              %li= link_to 'Acerca de las promociones'
+          .span9= render 'snippets/carousel'
+      
+      .container-fluid.squeeze
+        = render 'snippets/alerts' 
+        = yield
+      
+    .footer
+      .pull-right
+        = render 'snippets/session_links'

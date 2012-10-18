@@ -1,23 +1,14 @@
 .navbar.navbar-fixed
   .navbar-inner
     .container
-      %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.brand{:href => "./index.html"} Bootstrap
-      .nav-collapse.collapse
-        %ul.nav
-          %li= link_to 'Home', root_path
-          %li.active
-            %a{:href => "./getting-started.html"} Get started
-          %li
-            %a{:href => "./scaffolding.html"} Scaffolding
-          %li
-            %a{:href => "./base-css.html"} Base CSS
-          %li
-            %a{:href => "./components.html"} Components
-          %li
-            %a{:href => "./javascript.html"} Javascript
-          %li
-            %a{:href => "./customize.html"} Customize
+      = link_to 'OGApg', root_path ,class: 'brand'
+
+      %ul.nav
+        %li#promos_link= link_to 'Promociones', '/promos'
+        %li#shipments_link= link_to 'Envios', '/shipments'
+        %li#contact_link= link_to 'Contacto', '/contact'
+
+      %ul.nav.pull-right
+        %li= link_to 'Facebook'
+        %li= link_to 'Twitter'
+        %li= link_to "Admin: #{current_admin.name}", '#' if admin_signed_in? 

@@ -1,0 +1,10 @@
+#myCarousel.carousel.slide
+  / Carousel items
+  .carousel-inner
+    .active.item= image_tag 'http://placehold.it/1800x600'
+    .item= image_tag 'http://placehold.it/1800x600'
+    .item= image_tag 'http://placehold.it/1800x600'
+    .item= image_tag 'http://placehold.it/1800x600'
+  / Carousel nav
+  %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+  %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›

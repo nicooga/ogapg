@@ -2,7 +2,12 @@ class ProductsController < ApplicationController
   before_filter :authenticate_admin!, :except => [:index, :show]
 
   def index
-    @products= Product.all
+    if params[:category]
+      @products = Product.all.find_all {|pct| pct.category == params[:category]}
+      @category = params[:category].gsub(/\s+/, "")
+    else
+      @products= Product.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

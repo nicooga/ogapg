@@ -1,5 +1,14 @@
-%h1 Lista de Productos
-%p impresiones, bosta en bolsita, random stuff, blah blah
+.hide#current_category= @category if @category
+
+
+%ul.breadcrumb
+  %li 
+    = link_to 'Productos', products_path
+    = " "
+    %span.divider /
+  - if @category 
+    %li.active
+      = link_to @category, category: @category
 
 - @products.each_slice(4) do |slice| 
   .row-fluid

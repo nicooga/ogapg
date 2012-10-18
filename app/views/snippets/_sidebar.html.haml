@@ -1,25 +1,18 @@
-.well.sidebar-nav
-  = content_tag :h1, (link_to 'Productos', products_path, :class => 'btn btn-block')
+.sidebar-nav#sidebar
+  %h4.center.underlined PRODUCTOS 
   %ul.nav.nav-tabs.nav-stacked
     %li.nav-header Offset
-    %li
-      %a Folletos
-    %li
-      %a Tarjetas Personales
-    %li
-      %a Imanes
+    %li#Folletos= link_to 'Folletos', category: 'Folletos'
+    %li#TarjetasPersonales= link_to 'Tarjetas Personales', category: "Tarjetas Personales"
+    %li#Imanes= link_to 'Imanes', category: 'Imanes'
     %li.nav-header Digital
-    %li
-      %a Gigantografías
-    %li
-      %a Banners
-    %li
-      %a Tarjetas Personales
-  %h1= link_to 'Contacto', products_path, :class => 'btn btn-block'
+    %li#Gigantografias= link_to 'Gigantografías', category: 'Gigantografias'
+    %li#Banners= link_to 'Banners', category: 'Banners'
   %ul.nav.nav-tabs.nav-stacked
-    %li
-      %a Presupuestos a medida
-    %li
-      %a Servicio de corrección de originales
-    %li
-      %a Solicite muestras a domicilio
+    %li= link_to 'Todos', products_path
+
+%ul.nav.nav-list.well
+  %li.nav-header Contacto
+  %li= link_to 'Presupuestos a medida'
+  %li= link_to 'Servicio de correccion de originales'
+  %li= link_to 'Solicite muestras a domicilio'

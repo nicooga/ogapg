@@ -8,15 +8,16 @@
       = javascript_include_tag "#{controller_name}/#{action_name}"
     = csrf_meta_tags
   %body
-    = render 'snippets/navbar'
-    .container-fluid
-      .row-fluid
-        .span2= render 'snippets/sidebar'
-        .span10
-          = render 'snippets/alerts'
-          = yield
-    .row-fluid
-      %footer
-        .well
-          .pull-right
-            = render 'snippets/session_links'
+    .wrapper
+      = render 'snippets/navbar'
+
+      .container-fluid
+        .row-fluid
+          .span2= render 'snippets/sidebar'
+          .span10
+            = render 'snippets/alerts'
+            = yield
+
+    .footer
+      .pull-right
+        = render 'snippets/session_links'
