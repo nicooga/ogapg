@@ -8,8 +8,10 @@
         = thumbnail prod, :size => 'span3' do
           - content_tag :div, :class => 'pull-right' do
             - string = link_to 'Ver mas', prod, :class => 'btn btn-mini'
-            - string += link_to 'Editar', edit_product_path(prod), :class => 'btn btn-mini'
-            - string += link_to 'Eliminar', prod, 'data-method' => 'delete', :class => 'btn btn-mini btn-danger'
+            - if admin_signed_in?
+              - string += link_to 'Editar', edit_product_path(prod), :class => 'btn btn-mini'
+              - string += link_to 'Eliminar', prod, 'data-method' => 'delete', :class => 'btn btn-mini btn-danger'
+            - string
 
 = link_to 'Volver', root_path, :class => 'btn'
-= link_to 'Nuevo', new_product_path, :class => 'btn'
+= link_to 'Nuevo', new_product_path, :class => 'btn' if admin_signed_in?

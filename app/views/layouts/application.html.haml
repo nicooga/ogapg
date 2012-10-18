@@ -15,5 +15,8 @@
         .span10
           = render 'snippets/alerts'
           = yield
-    %footer
-      %a Admin
+    .row-fluid
+      %footer
+        .well
+          .pull-right
+            = render 'snippets/session_links'
