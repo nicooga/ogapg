@@ -1,15 +1,15 @@
 .sidebar-nav#sidebar
   %h4.center.underlined PRODUCTOS 
-  %ul.nav.nav-tabs.nav-stacked
+  %ul.nav.nav-tabs.nav-pills.nav-stacked
     %li.nav-header Offset
-    %li#Folletos= link_to 'Folletos', category: 'Folletos'
-    %li#TarjetasPersonales= link_to 'Tarjetas Personales', category: "Tarjetas Personales"
-    %li#Imanes= link_to 'Imanes', category: 'Imanes'
+    %li#Folletos=           link_to 'Folletos', products_path(category: 'Folletos')
+    %li#TarjetasPersonales= link_to 'Tarjetas Personales', products_path(category: "Tarjetas Personales")
+    %li#Imanes=             link_to 'Imanes', products_path(category: 'Imanes')
     %li.nav-header Digital
-    %li#Gigantografias= link_to 'Gigantografías', category: 'Gigantografias'
-    %li#Banners= link_to 'Banners', category: 'Banners'
-  %ul.nav.nav-tabs.nav-stacked
-    %li= link_to 'Todos', products_path
+    %li#Gigantografias=     link_to 'Gigantografías', products_path(category: 'Gigantografias')
+    %li#Banners=            link_to 'Banners', products_path(category: 'Banners')
+  %ul.nav.nav-tabs.nav-pills.nav-stacked
+    %li#default= link_to 'Todos los productos', products_path
 
 %ul.nav.nav-list.well
   %li.nav-header Contacto

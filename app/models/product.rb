@@ -10,5 +10,5 @@ class Product < ActiveRecord::Base
   
   validates_presence_of :name, :category, :description 
   
-  CATEGORIES= %w( Folletos Tarjetas\ Personales Imanes Stickers Gigantografias Banners )
+  CATEGORIES= %w( Folletos Tarjetas\ Personales Imanes Stickers Gigantografias Banners Postales Stickers Volantes )
 end

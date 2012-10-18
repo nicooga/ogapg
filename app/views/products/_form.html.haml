@@ -1,6 +1,7 @@
 %h2 Hola soy un form
 %p Para crear nuevos productos
-= form_for (@product), :html => {:multipart => true} do |f|
+
+= form_for (@product), :html => {multipart: true} do |f|
   - if @product.errors.any?
     #error_explanation.alert.alert-error
       %p
@@ -9,7 +10,8 @@
       %ul
         - @product.errors.full_messages.each do |msg|
           %li= msg
-  .row-fluid.underlined
+
+  .row-fluid
     .span3
       = content_tag :legend, 'Datos Básicos'
       = f.label :name, 'Nombre'
@@ -18,6 +20,7 @@
       = f.select :category, Product::CATEGORIES
       = f.label :description, 'Descripción'
       = f.text_area :description, :rows => 10, :style => 'width:100%;'
+
     .span3
       = content_tag :legend, 'Precio'
       %p
@@ -30,7 +33,7 @@
           %th Monto ($)
           %th
         %tbody
-      %br/
+
       #price_fields.span2.modal.hide.fade
         .modal-header
           %button#cancel.close{"data-dismiss" => "modal", :type => "button"} ×
@@ -43,18 +46,20 @@
         .modal-footer
           %a#cancel.btn{"data-toggle" => "modal", :href => "#price_fields"} Cancelar
           %a#add_price.btn.btn-primary{:href => "#"} Agregar
+
     .span3
       = content_tag :legend, 'Propiedades'
       %p
         %a.btn.btn-block{"data-toggle" => "modal", :href => "#property_fields"} Agregar propiedad
       %p Detalles acerca del producto, en formato 'nombre => valor'.
+
       %table#properties_table.table.hide
         %thead
           %th Nombre
           %th Valor
           %th
         %tbody
-      %br/
+
       #property_fields.span2.modal.hide.fade
         .modal-header
           %button#cancel.close{"data-dismiss" => "modal", :type => "button"} ×
@@ -67,6 +72,7 @@
         .modal-footer
           %a#cancel.btn{"data-toggle" => "modal", :href => "#property_fields"} Cancelar
           %a#add_property.btn.btn-primary{:href => "#"} Agregar
+
     .span3
       = content_tag :legend, 'Imagen'
       = f.hidden_field :image_cache
@@ -75,9 +81,10 @@
         = file_uploader 'product[image]', @product.image_url
       - else
         = file_uploader 'product[image]'
-  %br/
-  = f.submit 'Crear', :class => 'btn btn-primary'
-  = link_to 'Cancelar', :back, :class => 'btn btn-warning'
+
+  .form-actions
+    = f.submit 'Crear', :class => 'btn btn-primary'
+    = link_to 'Cancelar', :back, :class => 'btn btn-warning'
 
 .hide#product_prices= @product.prices.each.to_json unless @product.prices.empty?
 .hide#product_properties= @product.properties.each.to_json unless @product.properties.empty?
