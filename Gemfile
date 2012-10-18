@@ -43,3 +43,4 @@ gem 'mini_magick'
 gem 'therubyracer'
 gem 'haml-rails', '>= 0.3.4'
 gem "rdiscount", ">= 1.6.8"
+gem 'thin'
