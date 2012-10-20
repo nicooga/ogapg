@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def input_prepend(addon,input)
     row = content_tag :span, addon, :class => 'add-on'
     row += input
@@ -47,19 +48,6 @@ module ApplicationHelper
           string2 += content.call if block_given?
         end
       end
-    end
-  end 
-
-  def form_script
-    content_tag :script do
-      string = '$(function(){'
-      string += @product.prices.each do |price|
-       "window.add_price(#{price.quantity},#{price.amount},#{price.id});"
-      end unless @product.prices.length == 0
-      string += @product.properties.each do |ppty|
-        "window.add_property(#{ppty.name},#{ppty.value},#{ppty.id});"
-      end unless @product.prices.length == 0
-      string += '});'
     end
   end
 

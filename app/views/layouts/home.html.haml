@@ -13,17 +13,21 @@
 
       .container-fluid.squeeze
         .row-fluid
-          .span3
-            %ul.nav.nav-tabs.nav-stacked
-              %li= link_to 'Productos', products_path
-              %li= link_to 'Política de envíos'
-              %li= link_to 'Acerca de las promociones'
+          .span3.center
+            %h3.underlined
+              = link_to 'Productos', products_path, class: 'act'
+              %i.icon-arrow-right
+            %h3.underlined= link_to 'Política de envíos', 'shipping_policy', class: 'act'
+            %h3= link_to 'Acerca de las promociones', 'about_promos', class: 'act'
           .span9= render 'snippets/carousel'
       
       .container-fluid.squeeze
         = render 'snippets/alerts' 
         = yield
-      
+
+      .chunk
+      .push
+
     .footer
       .pull-right
         = render 'snippets/session_links'

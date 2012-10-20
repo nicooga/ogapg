@@ -81,10 +81,6 @@ $ ->
     $row.remove()
     $table.addClass "hide"  if $tbody.find("tr").length is 0
 
-  #Blank inputs when modal is hidden
-  $(".modal").on "hidden", ->
-    $(this).find("input").val ""
-
   #Load prices and properties on document ready
   $(document).on 'ready', ->
     

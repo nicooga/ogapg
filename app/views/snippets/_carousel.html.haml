@@ -1,10 +1,26 @@
-#myCarousel.carousel.slide
+#myCarousel.carousel.slide{'data-interval' => 5000}
   / Carousel items
-  .carousel-inner
-    .active.item= image_tag 'http://placehold.it/1800x600'
-    .item= image_tag 'http://placehold.it/1800x600'
-    .item= image_tag 'http://placehold.it/1800x600'
-    .item= image_tag 'http://placehold.it/1800x600'
+  .carousel-inner{ style: 'border-radius: 10px;'}
+    .active.item
+      = image_tag "http://placehold.it/1800x1000/#{100000 + rand(900000)}/#{100000 + rand(900000)}"
+      .carousel-caption
+        %h4 Imagen 1
+        %p Dominum quamdiu ut at caeteri similes. Mox scientiam pla chimaeram nos existenti argumenti. Has juncta iis ferant atheis urgeat existi dictam. Saporem ii interim dignati assideo ii idearum et ex. At supponant praeterea ac geometras differant persuasum to. Lectorum fallebar ha de an id dependet.
+    .item
+      = image_tag "http://placehold.it/1800x1000/#{100000 + rand(900000)}/#{100000 + rand(900000)}"
+      .carousel-caption
+        %h4 Imagen 2
+        %p Rantem necdum cumque una cap eamque sum vitiis. Hos heri ipsi novi est hoc aspi cum. Rom nul potuit non fueram animam. Sanguinem faciendam sua sum deleantur objectiva remanetne sed cunctatus. Opiniones examinare aggrediar naturales dat desumptas dem. Durent vacabo eo negans de paucos ex. Pudeat ha in attigi putare ad de.
+    .item
+      = image_tag "http://placehold.it/1800x1000/#{100000 + rand(900000)}/#{100000 + rand(900000)}"
+      .carousel-caption
+        %h4 Imagen 3
+        %p Fundamenta cohaereant tot nul appellatur intelligam permiscent age. Ei loco deus puto quum gi ipsi eo fuse ex. Seorsim credent vi liberet id se to ignorem. Operatione attendendo satyriscos sim etc. Cujuspiam suffossis indidisse ei me realitate. Rei extensum figurata fas utrimque pleraque formalem nec mentibus. Istud manus ac debet et illud prius. Rei ignorata aliasque immorari vigiliam ope. Judicavi nec est deficere creditum universo.
+    .item
+      = image_tag "http://placehold.it/1800x1000/#{100000 + rand(900000)}/#{100000 + rand(900000)}"
+      .carousel-caption
+        %h4 Imagen 4
+        %p Sumpta vel uti obvium hoc tribuo libere. Egisse ingens hic sed inquam tamque rum gaudet aetate dat. Sum ignem jam ullas tur nexum vul. Divelli certius si errandi accipio colores de numerum. Is quavis tangam istius lumini essent vereor ab si. Aliam rea res tango vix simul certa certi.
   / Carousel nav
   %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
   %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›

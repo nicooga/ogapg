@@ -13,74 +13,73 @@
 
   .row-fluid
     .span3
-      = content_tag :legend, 'Datos Básicos'
+      %legend Datos Básicos
       = f.label :name, 'Nombre'
       = f.text_field :name
       = f.label :category, 'Categoría'
       = f.select :category, Product::CATEGORIES
-      = f.label :description, 'Descripción'
-      = f.text_area :description, :rows => 10, :style => 'width:100%;'
 
-    .span3
-      = content_tag :legend, 'Precio'
-      %p
-        %a.btn.btn-block{"data-toggle" => "modal", :href => "#price_fields"} Agregar precio
-      %p
-        Precios por cantidad. Para precio base, cree una entrada <em><strong>(cantidad: 1, monto: X)</strong></em>
-      %table#prices_table.table.span8.hide
-        %thead
-          %th Cantidad
-          %th Monto ($)
-          %th
-        %tbody
-
-      #price_fields.span2.modal.hide.fade
-        .modal-header
-          %button#cancel.close{"data-dismiss" => "modal", :type => "button"} ×
-          %h3 Agregar precio
-        .modal-body
-          = label_tag  :quantity, 'Cantidad'
-          = input_prepend '/c', (text_field_tag :quantity, nil, :name => nil, :class => 'span8')
-          = label_tag :amount, 'Monto'
-          = input_prepend '$', (text_field_tag :amount, nil, :name => nil, :class => 'span8')
-        .modal-footer
-          %a#cancel.btn{"data-toggle" => "modal", :href => "#price_fields"} Cancelar
-          %a#add_price.btn.btn-primary{:href => "#"} Agregar
-
-    .span3
-      = content_tag :legend, 'Propiedades'
-      %p
-        %a.btn.btn-block{"data-toggle" => "modal", :href => "#property_fields"} Agregar propiedad
-      %p Detalles acerca del producto, en formato 'nombre => valor'.
-
-      %table#properties_table.table.hide
-        %thead
-          %th Nombre
-          %th Valor
-          %th
-        %tbody
-
-      #property_fields.span2.modal.hide.fade
-        .modal-header
-          %button#cancel.close{"data-dismiss" => "modal", :type => "button"} ×
-          %h3 Agregar propiedad
-        .modal-body
-          = label_tag  :name, 'Nombre '
-          = text_field_tag :name, nil, :name => nil, :class => 'span8'
-          = label_tag :value, 'Valor'
-          = text_field_tag :value, nil, :name => nil, :class => 'span8'
-        .modal-footer
-          %a#cancel.btn{"data-toggle" => "modal", :href => "#property_fields"} Cancelar
-          %a#add_property.btn.btn-primary{:href => "#"} Agregar
-
-    .span3
-      = content_tag :legend, 'Imagen'
+      %legend Imagen
       = f.hidden_field :image_cache
       - if @product.image.file
-        = label_tag 'Imagen actual'
+        %label Imagen actual
         = file_uploader 'product[image]', @product.image_url
       - else
         = file_uploader 'product[image]'
+
+    .span6
+      %legend= 'Descripción'
+      .center= f.text_area :description, class: 'editor'
+
+    .span3
+      .tabbable
+        %ul.nav.nav-tabs
+          %li.active
+            %a{href: '#prices_tab', 'data-toggle' => 'tab'} Precios
+          %li
+            %a{href:'#properties_tab', 'data-toggle' => 'tab'} Propiedades
+
+        .tab-content
+          .tab-pane.active#prices_tab
+            = content_tag :legend, 'Precio'
+            %p
+              Precios por cantidad. Para precio base, cree una entrada <em><strong>(cantidad: 1, monto: X)</strong></em>
+
+            .spaced
+              %label{for: :quantity} Cantidad
+              = input_prepend '/c', (text_field_tag :quantity, nil, name: nil, class: 'span7')
+              %label{for: :amount} Monto
+              = input_prepend '$', (text_field_tag :amount, nil, name: nil, class: 'span7')
+
+            %a.btn#cancel Limpiar
+            %a.btn.btn-primary#add_price Agregar precio
+
+            %table#prices_table.table.hide
+              %thead
+                %th Cantidad
+                %th Monto ($)
+                %th
+              %tbody
+
+          .tab-pane#properties_tab
+            = content_tag :legend, 'Propiedades'
+            %p Detalles acerca del producto, en formato 'nombre => valor'.
+
+            .spaced
+              %label{for: :name} Nombre
+              %input.span9#name{type: 'text'}
+              %label{for: :value} Valor
+              %input.span9#value{type: 'text'}
+              <br/>
+              %a#cancel.btn Limpiar
+              %a#add_property.btn.btn-primary Agregar propiedad
+
+            %table#properties_table.table.hide
+              %thead
+                %th Nombre
+                %th Valor
+                %th
+              %tbody
 
   .form-actions
     = f.submit 'Crear', :class => 'btn btn-primary'
