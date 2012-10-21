@@ -1,7 +1,7 @@
 %h2 Hola soy un form
 %p Para crear nuevos productos
 
-= form_for (@product), :html => {multipart: true} do |f|
+= form_for (@product), :html => {multipart: true, class: 'square'} do |f|
   - if @product.errors.any?
     #error_explanation.alert.alert-error
       %p
@@ -10,76 +10,75 @@
       %ul
         - @product.errors.full_messages.each do |msg|
           %li= msg
+  .fields
+    .row-fluid
+      .span3
+        %legend Datos Básicos
+        = f.label :name, 'Nombre'
+        = f.text_field :name
+        = f.label :category, 'Categoría'
+        = f.select :category, Product::CATEGORIES
 
-  .row-fluid
-    .span3
-      %legend Datos Básicos
-      = f.label :name, 'Nombre'
-      = f.text_field :name
-      = f.label :category, 'Categoría'
-      = f.select :category, Product::CATEGORIES
+        %legend Imagen
+        = f.hidden_field :image_cache
+        - if @product.image.file
+          %label Imagen actual
+          = file_uploader 'product[image]', @product.image_url
+        - else
+          = file_uploader 'product[image]'
 
-      %legend Imagen
-      = f.hidden_field :image_cache
-      - if @product.image.file
-        %label Imagen actual
-        = file_uploader 'product[image]', @product.image_url
-      - else
-        = file_uploader 'product[image]'
+      .span6
+        %legend= 'Descripción'
+        .center= f.text_area :description, class: 'editor'
+        %alert.alert-info Este campo tiene soporte Markdown. Para mas ayuda vea este #{ link_to 'link', 'http://daringfireball.net/projects/markdown/basics'}.
 
-    .span6
-      %legend= 'Descripción'
-      .center= f.text_area :description, class: 'editor'
+      .span3
+        .tabbable
+          %ul.nav.nav-tabs
+            %li.active
+              %a{href: '#prices_tab', 'data-toggle' => 'tab'} Precios
+            %li
+              %a{href:'#properties_tab', 'data-toggle' => 'tab'} Propiedades
 
-    .span3
-      .tabbable
-        %ul.nav.nav-tabs
-          %li.active
-            %a{href: '#prices_tab', 'data-toggle' => 'tab'} Precios
-          %li
-            %a{href:'#properties_tab', 'data-toggle' => 'tab'} Propiedades
+          .tab-content
+            .tab-pane.active#prices_tab
+              %p
+                Precios por cantidad. Para precio base, cree una entrada <em><strong>(cantidad: 1, monto: X)</strong></em>
 
-        .tab-content
-          .tab-pane.active#prices_tab
-            = content_tag :legend, 'Precio'
-            %p
-              Precios por cantidad. Para precio base, cree una entrada <em><strong>(cantidad: 1, monto: X)</strong></em>
-
-            .spaced
               %label{for: :quantity} Cantidad
               = input_prepend '/c', (text_field_tag :quantity, nil, name: nil, class: 'span7')
               %label{for: :amount} Monto
               = input_prepend '$', (text_field_tag :amount, nil, name: nil, class: 'span7')
 
-            %a.btn#cancel Limpiar
-            %a.btn.btn-primary#add_price Agregar precio
+              .pull-left
+                %a.btn#cancel Limpiar
+                %a.btn.btn-primary#add_price Agregar precio
 
-            %table#prices_table.table.hide
-              %thead
-                %th Cantidad
-                %th Monto ($)
-                %th
-              %tbody
+              %table#prices_table.table.hide
+                %thead
+                  %th Cantidad
+                  %th Monto ($)
+                  %th
+                %tbody
 
-          .tab-pane#properties_tab
-            = content_tag :legend, 'Propiedades'
-            %p Detalles acerca del producto, en formato 'nombre => valor'.
+            .tab-pane#properties_tab
+              %p Detalles acerca del producto, en formato 'nombre => valor'.
 
-            .spaced
               %label{for: :name} Nombre
               %input.span9#name{type: 'text'}
               %label{for: :value} Valor
               %input.span9#value{type: 'text'}
-              <br/>
-              %a#cancel.btn Limpiar
-              %a#add_property.btn.btn-primary Agregar propiedad
 
-            %table#properties_table.table.hide
-              %thead
-                %th Nombre
-                %th Valor
-                %th
-              %tbody
+              .pull-left                
+                %a#cancel.btn Limpiar
+                %a#add_property.btn.btn-primary Agregar propiedad
+
+              %table#properties_table.table.hide
+                %thead
+                  %th Nombre
+                  %th Valor
+                  %th
+                %tbody
 
   .form-actions
     = f.submit 'Crear', :class => 'btn btn-primary'

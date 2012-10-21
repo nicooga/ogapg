@@ -38,9 +38,12 @@ gem 'jquery-rails'
 
 gem 'execjs'
 gem 'devise'
+gem 'therubyracer'
+
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'therubyracer'
+
 gem 'haml-rails', '>= 0.3.4'
-gem "rdiscount", ">= 1.6.8"
+gem 'redcarpet'
+
 gem 'thin'

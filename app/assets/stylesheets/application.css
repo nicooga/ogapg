@@ -46,6 +46,11 @@
   border: 1px solid #E5E5E5;
 }
 
+form > .fields {
+  padding: 10px;
+  padding-bottom: 0px;
+}
+
 .spaced {
   padding-bottom: 10px;
   margin-bottom: 20px;

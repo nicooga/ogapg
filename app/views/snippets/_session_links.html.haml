@@ -1,2 +1,8 @@
-= link_to 'Login', new_admin_session_path unless admin_signed_in?
-= link_to 'Logout', destroy_admin_session_path, method: 'delete' if admin_signed_in?
+- if admin_signed_in?
+  %a.act{href: destroy_admin_session_path, 'data-method' => 'delete'} 
+    %i.iconic-key-stroke
+    Logout
+- else
+  %a.act{href: new_admin_session_path} 
+    %i.iconic-key-stroke
+    Administración

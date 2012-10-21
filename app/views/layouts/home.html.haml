@@ -15,8 +15,9 @@
         .row-fluid
           .span3.center
             %h3.underlined
-              = link_to 'Productos', products_path, class: 'act'
-              %i.icon-arrow-right
+              %a.act{href:products_path}
+                Productos
+                %i.iconic-arrow-right
             %h3.underlined= link_to 'Política de envíos', 'shipping_policy', class: 'act'
             %h3= link_to 'Acerca de las promociones', 'about_promos', class: 'act'
           .span9= render 'snippets/carousel'

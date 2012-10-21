@@ -4,7 +4,8 @@
   %li 
     = link_to 'Productos', products_path
     = " "
-    %span.divider /
+    %span.divider
+      %i.icon-chevron-right
   - if @category 
     %li.active
       = link_to @category, category: @category
